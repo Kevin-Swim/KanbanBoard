@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model ="clr-namespace:KanbanBoard.Models"
+             x:Class="KanbanBoard.View.MainPage"
+             Background="{StaticResource Gray400}"
+             >
+
+    <Grid RowDefinitions="100,Auto" ColumnDefinitions="Auto,*" ColumnSpacing="25" RowSpacing="25">
+        <Label Grid.Row="0" Grid.Column="0" Margin="40,40,0,0" Text="Workspaces" FontSize="Large" FontFamily="Arial" TextColor="{StaticResource Gray900}" FontAttributes="Bold"/>
+        <Button Grid.Row="0" Grid.Column="1" Text="New" HeightRequest="50" WidthRequest="100" VerticalOptions="Center" FontAttributes="Bold" BorderColor="{StaticResource Gray600}" BorderWidth="2" HorizontalOptions="End" Margin="0,40,40,0"/>
+        <CollectionView Grid.Row="1" Grid.Column="0" x:Name="ProjectsCV" HeightRequest="500" Margin="100,0,0,0" HorizontalOptions="Fill" ItemsLayout="HorizontalList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Project">
+                    <Frame HeightRequest="250" WidthRequest="250" HorizontalOptions="Start" BackgroundColor="{StaticResource Primary}" HasShadow="True" Margin="10">
+                        <Frame.Shadow>
+                            <Shadow Brush="{StaticResource Gray950}" Offset="20,20" Radius="40" Opacity=".8"/>
+                        </Frame.Shadow>
+                        <VerticalStackLayout VerticalOptions="Start">
+                            <Label FontSize="Medium" FontFamily="Arial" Text="{Binding Name}" Margin="0,25,0,25" FontAttributes="Bold"/>
+                            <Label FontSize="Small" FontFamily="Arial" HorizontalOptions="End" Text="{Binding Description}" Margin="0,25,0,0"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid> 
+</ContentPage>
