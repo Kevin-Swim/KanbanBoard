@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using KanbanBoard.Models;
+using KanbanBoard.ViewModel;
 
 
 namespace KanbanBoard.View;
@@ -7,20 +8,22 @@ namespace KanbanBoard.View;
 public partial class MainPage : ContentPage
 {
 
-	ObservableCollection<Project> projs = new();
-	public MainPage()
+	WorkspaceViewModel vm;
+	
+	public MainPage(WorkspaceViewModel viewModel)
 	{
 		InitializeComponent();
-		ProjectsCV.ItemsSource = projs;
-		LoadProjects();
+		vm = viewModel;
+		BindingContext = vm;
+
 	}
 
-	private void LoadProjects()
-	{
-		//TODO: completed Data Retrevial
-		Project p =  new Project() { Name ="Kanban Board", Description="This is a test description" };
-        Project p2 = new Project() { Name = "Kanban Board", Description = "This is a test description" };
-        projs.Add(p);
-        projs.Add(p2);
+    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+		await vm.GetProjects();
     }
+
+
+
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace KanbanBoard.ViewModel
 {
-    public class CardDetailsViewModel
+    public partial class CardDetailsViewModel : BaseViewModel
     {
     }
 }

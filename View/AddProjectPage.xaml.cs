@@ -2,9 +2,9 @@ using KanbanBoard.ViewModel;
 
 namespace KanbanBoard.View;
 
-public partial class ProjectDetailPage : ContentPage
+public partial class AddProjectPage : ContentPage
 {
-	public ProjectDetailPage(ProjectsViewModel vm)
+	public AddProjectPage(AddProjectPageViewModel vm)
 	{
 		InitializeComponent();
 		BindingContext = vm;

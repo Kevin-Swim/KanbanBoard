@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KanbanBoard.View.AddProjectPage"
+             xmlns:viewmodel ="clr-namespace:KanbanBoard.ViewModel"
+             x:DataType="viewmodel:AddProjectPageViewModel"
+             Background="#383F51">
+    
+    <VerticalStackLayout WidthRequest="300" HeightRequest="500">
+        <Label Text="Project Name" Margin="10" FontAttributes="Bold"/>
+        <Entry Margin="10" Text="{Binding ProjName}"/>
+        <Label Text="Project Description" Margin="10" FontAttributes="Bold"/>
+        <Editor Margin="10" AutoSize="TextChanges" Text="{Binding ProjDescription}"/>
+        <Button Text="Submit" Margin="10" FontSize="Medium" Command="{Binding AddProjectCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>
