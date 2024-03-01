@@ -25,11 +25,22 @@ namespace KanbanBoard.ViewModel
         [RelayCommand]
         public async Task AddProject()
         {
-            Project proj = new() { Name = ProjName, Description = ProjDescription };
 
-            await d.AddItemAsync(proj);
+            if(ProjName != null && ProjDescription != null)
+            {
+                Project proj = new() { Name = ProjName, Description = ProjDescription };
 
-            await Shell.Current.GoToAsync("..");
+                await proj.Save();
+
+                await Shell.Current.GoToAsync("..");
+
+                ProjName = "";
+                ProjDescription = "";
+            }
+            else
+            {
+                await Shell.Current.GoToAsync("..");
+            }
         }
     }
 }

@@ -1,12 +1,133 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:KanbanBoard.ViewModel"
              x:Class="KanbanBoard.View.ProjectDetailPage"
-             Title="ProjectDetailPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:model="clr-namespace:KanbanBoard.Models"
+             x:DataType="viewmodel:ProjectsViewModel"  >
+    
+    <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto" RowSpacing="25" ColumnSpacing="25">
+        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Project.Name}" Margin="25,25,0,0" FontSize="Large"/>
+        <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="50,25,0,0">
+            <Frame HeightRequest="600" BackgroundColor="Transparent" BorderColor="Black" WidthRequest="275" Margin="10,0,10,0">
+                <VerticalStackLayout>
+                    <Frame BackgroundColor="#E63363" Margin="0,0,0,25" WidthRequest="275">
+                        <Label Text="BackLog" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                     </Frame>
+                    <CollectionView Margin="25,0,25,0" ItemsSource="{Binding BackLogCards}" WidthRequest="250" CanReorderItems="True" HeightRequest="400">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Card">
+                                <Frame BackgroundColor="{StaticResource White}" CornerRadius="15">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" TextDecorations="Underline"/>
+                                        <Label Text="{Binding Description}" TextColor="Black" HorizontalOptions="End"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button Text="Add Card" VerticalOptions="End" HeightRequest="50" Command="{Binding AddCardButtonCommand}"/>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame HeightRequest="600" BackgroundColor="Transparent" BorderColor="Black" WidthRequest="275" Margin="10,0,10,0">
+                <VerticalStackLayout>
+                    <Frame BackgroundColor="#EBA925" Margin="0,0,0,25" WidthRequest="275">
+                        <Label Text="UpNext" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    </Frame>
+                    <CollectionView Margin="25,0,25,0" WidthRequest="250" CanReorderItems="True" HeightRequest="400">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Card">
+                                <Frame BackgroundColor="{StaticResource White}" CornerRadius="15">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" TextDecorations="Underline"/>
+                                        <Label Text="{Binding Description}" TextColor="Black" HorizontalOptions="End"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame HeightRequest="600" BackgroundColor="Transparent" BorderColor="Black" WidthRequest="275" Margin="10,0,10,0">
+                <VerticalStackLayout>
+                    <Frame BackgroundColor="DarkCyan" Margin="0,0,0,25" WidthRequest="275">
+                        <Label Text="In Progress" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    </Frame>
+                    <CollectionView Margin="25,0,25,0" WidthRequest="250" CanReorderItems="True" HeightRequest="400">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Card">
+                                <Frame BackgroundColor="{StaticResource White}" CornerRadius="15">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" TextDecorations="Underline"/>
+                                        <Label Text="{Binding Description}" TextColor="Black" HorizontalOptions="End"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame HeightRequest="600" BackgroundColor="Transparent" BorderColor="Black" WidthRequest="275" Margin="10,0,10,0">
+                <VerticalStackLayout>
+                    <Frame BackgroundColor="#0E2745" Margin="0,0,0,25" WidthRequest="275">
+                        <Label Text="On Hold" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    </Frame>
+                    <CollectionView Margin="25,0,25,0" WidthRequest="250" CanReorderItems="True" HeightRequest="400">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Card">
+                                <Frame BackgroundColor="{StaticResource White}" CornerRadius="15">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" TextDecorations="Underline"/>
+                                        <Label Text="{Binding Description}" TextColor="Black" HorizontalOptions="End"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame HeightRequest="600" BackgroundColor="Transparent" BorderColor="Black" WidthRequest="275" Margin="10,0,10,0">
+                <VerticalStackLayout>
+                    <Frame BackgroundColor="#40AD47" Margin="0,0,0,25" WidthRequest="275">
+                        <Label Text="Completed" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    </Frame>
+                    <CollectionView Margin="25,0,25,0" WidthRequest="250" CanReorderItems="True" HeightRequest="400">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Card">
+                                <Frame BackgroundColor="{StaticResource White}" CornerRadius="15">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" TextDecorations="Underline"/>
+                                        <Label Text="{Binding Description}" TextColor="Black" HorizontalOptions="End"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+            <Frame HeightRequest="600" BackgroundColor="Transparent" BorderColor="Black" WidthRequest="275" Margin="10,0,10,0">
+                <VerticalStackLayout>
+                    <Frame BackgroundColor="#333333" Margin="0,0,0,25" WidthRequest="275">
+                        <Label Text="Questions" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    </Frame>
+                    <CollectionView Margin="25,0,25,0" WidthRequest="250" CanReorderItems="True" HeightRequest="400">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Card">
+                                <Frame BackgroundColor="{StaticResource White}" CornerRadius="15">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" TextDecorations="Underline"/>
+                                        <Label Text="{Binding Description}" TextColor="Black" HorizontalOptions="End"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+        </HorizontalStackLayout>
+        <CollectionView>
+            
+        </CollectionView>
+
+    </Grid>
 </ContentPage>

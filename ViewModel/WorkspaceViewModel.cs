@@ -64,5 +64,14 @@ namespace KanbanBoard.ViewModel
                     { "Project", proj }
                 });
         }
+
+        [RelayCommand]
+        async Task DeleteProject(Project proj)
+        {
+            await proj.Delete();
+            Projects.Remove(proj);
+        }
+
     }
 }
+

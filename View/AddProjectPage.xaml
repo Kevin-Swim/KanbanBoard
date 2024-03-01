@@ -5,7 +5,6 @@
              xmlns:viewmodel ="clr-namespace:KanbanBoard.ViewModel"
              x:DataType="viewmodel:AddProjectPageViewModel"
              Background="#383F51">
-    
     <VerticalStackLayout WidthRequest="300" HeightRequest="500">
         <Label Text="Project Name" Margin="10" FontAttributes="Bold"/>
         <Entry Margin="10" Text="{Binding ProjName}"/>
@@ -13,4 +12,5 @@
         <Editor Margin="10" AutoSize="TextChanges" Text="{Binding ProjDescription}"/>
         <Button Text="Submit" Margin="10" FontSize="Medium" Command="{Binding AddProjectCommand}"/>
     </VerticalStackLayout>
+
 </ContentPage>
