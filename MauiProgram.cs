@@ -21,16 +21,33 @@ namespace KanbanBoard
 #if DEBUG
     		builder.Logging.AddDebug();
 
+            #region Services
+
             builder.Services.AddSingleton<DataService>();
 
+            #endregion
+
+            #region Pages
+
             builder.Services.AddTransient<ProjectDetailPage>();
+            builder.Services.AddTransient<CardDetailPage>();
+
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<AddProjectPage>();
+            builder.Services.AddSingleton<AddCardPage>();
+            #endregion
+
+            #region ViewModels
+
             builder.Services.AddTransient<ProjectsViewModel>();
+            builder.Services.AddTransient<CardDetailsViewModel>();
 
             builder.Services.AddSingleton<WorkspaceViewModel>();
-            builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<AddProjectPageViewModel>();
-            builder.Services.AddSingleton<AddProjectPage>();
-#endif  
+            builder.Services.AddSingleton<AddCardViewModel>();
+
+            #endregion
+#endif
 
             return builder.Build();
         }

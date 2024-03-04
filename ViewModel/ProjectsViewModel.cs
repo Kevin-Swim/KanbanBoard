@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using KanbanBoard.Models;
 using KanbanBoard.Services;
+using KanbanBoard.View;
 using System.Collections.ObjectModel;
 
 namespace KanbanBoard.ViewModel
@@ -17,30 +18,62 @@ namespace KanbanBoard.ViewModel
         [ObservableProperty]
         Project project;
 
-
+        private int id = 0;
         public ObservableCollection<Card> BackLogCards { get; } = [];
 
-        public ProjectsViewModel() 
+        public ProjectsViewModel()
         {
-            loadCards();
+
         }
 
-        private async Task loadCards()
+        partial void OnProjectChanged(Project oldValue, Project newValue)
+        {
+            id = newValue.Id;
+        }
+
+
+        [RelayCommand]
+        async Task LoadCards()
         {
             foreach (Card c in await d.GetAllAsync<Card>())
             {
-                if(c.Type == "BackLog")
+                if (c.ProjectId == id)
                 {
-                    BackLogCards.Add(c);
+                    if (c.Type == "BackLog")
+                    {
+                        BackLogCards.Add(c);
+                    }
                 }
             }
         }
 
         [RelayCommand]
-        private void AddCardButton()
+        async Task GoToAddCardAsync(Project proj)
         {
-
+            await Shell.Current.GoToAsync($"{nameof(AddCardPage)}", true,
+                new Dictionary<string, object>
+                {
+                    { "Project", proj }
+                });
         }
+
+        [RelayCommand]
+        async Task GoToCardDetail(Card card)
+        {
+            if (card is null)
+            {
+                return;
+            }
+            await Shell.Current.GoToAsync($"{nameof(CardDetailPage)}", true,
+                new Dictionary<string, object>
+                {
+                    { "Card", card }
+                });
+        }
+
+
 
     }
 }
+
+

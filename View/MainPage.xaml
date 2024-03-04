@@ -27,6 +27,7 @@
                         <VerticalStackLayout VerticalOptions="Start">
                             <Label FontSize="Medium" FontFamily="Arial" Text="{Binding Name}" Margin="0,25,0,25" FontAttributes="Bold" TextColor="#DDDBF1"/>
                             <Label FontSize="Small" FontFamily="Arial" HorizontalOptions="End" Text="{Binding Description}" Margin="0,25,0,0" TextColor="#DDDBF1"/>
+                            <Label Text="{Binding Id}"/>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>

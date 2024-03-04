@@ -2,11 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using KanbanBoard.Models;
 using KanbanBoard.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KanbanBoard.ViewModel
 {
@@ -39,7 +34,7 @@ namespace KanbanBoard.ViewModel
             }
             else
             {
-                await Shell.Current.GoToAsync("..");
+                await Shell.Current.DisplayAlert("Error", "Please ensure all fields are completed", "Ok");
             }
         }
     }

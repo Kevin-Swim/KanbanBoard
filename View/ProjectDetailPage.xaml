@@ -8,6 +8,7 @@
     
     <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto" RowSpacing="25" ColumnSpacing="25">
         <Label Grid.Row="0" Grid.Column="0" Text="{Binding Project.Name}" Margin="25,25,0,0" FontSize="Large"/>
+        <Button Text="Load Cards" Grid.Row="0" Grid.Column="1" HeightRequest="50" WidthRequest="125" Command="{Binding LoadCardsCommand}"/>
         <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="50,25,0,0">
             <Frame HeightRequest="600" BackgroundColor="Transparent" BorderColor="Black" WidthRequest="275" Margin="10,0,10,0">
                 <VerticalStackLayout>
@@ -18,6 +19,9 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:Card">
                                 <Frame BackgroundColor="{StaticResource White}" CornerRadius="15">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProjectsViewModel}}, Path=GoToCardDetailCommand }"/>
+                                    </Frame.GestureRecognizers>
                                     <VerticalStackLayout>
                                         <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" TextDecorations="Underline"/>
                                         <Label Text="{Binding Description}" TextColor="Black" HorizontalOptions="End"/>
@@ -26,7 +30,7 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                    <Button Text="Add Card" VerticalOptions="End" HeightRequest="50" Command="{Binding AddCardButtonCommand}"/>
+                    <Button Text="Add Card" VerticalOptions="End" HeightRequest="50" Command="{Binding GoToAddCardCommand}" CommandParameter="{Binding Project}"/>
                 </VerticalStackLayout>
             </Frame>
             <Frame HeightRequest="600" BackgroundColor="Transparent" BorderColor="Black" WidthRequest="275" Margin="10,0,10,0">

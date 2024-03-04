@@ -2,11 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KanbanBoard.View.CardDetailPage"
-             Title="CardDetailPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:viewmodel="clr-namespace:KanbanBoard.ViewModel"
+             xmlns:model="clr-namespace:KanbanBoard.Models"
+             x:DataType="viewmodel:CardDetailsViewModel">
+    
+    <Grid ColumnDefinitions="*,100" RowDefinitions="Auto, Auto, Auto, Auto" >
+        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Card.Name}" FontSize="Medium" FontAttributes="Bold" TextDecorations="Underline" Margin="50,50,0,0"/>
+        <Label Grid.Row="1" Grid.Column="0" FontSize="Small" Text="{Binding Card.Description}" Margin="50,0,0,0"/>
+        <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Comments}" Margin="50" HeightRequest="600">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Comment">
+                    <Frame Margin="10" BackgroundColor="{StaticResource White}">
+                        <Label Text="{Binding Description}" TextColor="{StaticResource Gray950}"/>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Entry Grid.Row="3" Grid.Column="0" Margin="50" WidthRequest="1000"/>
+        <Button Grid.Row="3" Grid.Column="1" Text="Submit" WidthRequest="100" HorizontalOptions="End" Margin="50"/>
+    </Grid>
 </ContentPage>

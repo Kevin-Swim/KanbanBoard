@@ -10,6 +10,8 @@ namespace KanbanBoard
 
             Routing.RegisterRoute(nameof(ProjectDetailPage), typeof(ProjectDetailPage));
             Routing.RegisterRoute(nameof(AddProjectPage), typeof(AddProjectPage));
+            Routing.RegisterRoute(nameof(AddCardPage), typeof(AddCardPage));
+            Routing.RegisterRoute(nameof(CardDetailPage), typeof(CardDetailPage));
         }
     }
 }
