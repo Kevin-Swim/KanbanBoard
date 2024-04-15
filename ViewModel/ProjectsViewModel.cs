@@ -20,6 +20,11 @@ namespace KanbanBoard.ViewModel
 
         private int id = 0;
         public ObservableCollection<Card> BackLogCards { get; } = [];
+        public ObservableCollection<Card> InprogressCards { get; } = [];
+        public ObservableCollection<Card> CompletedCards { get; } = [];
+        public ObservableCollection<Card> QuestionCards { get; } = [];
+        public ObservableCollection<Card> OnHoldCards { get; } = [];
+        public ObservableCollection<Card> UpNextCards { get; } = [];
 
         public ProjectsViewModel()
         {
