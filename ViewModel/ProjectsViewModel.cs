@@ -35,6 +35,7 @@ namespace KanbanBoard.ViewModel
         [RelayCommand]
         async Task LoadCards()
         {
+            BackLogCards.Clear();
             foreach (Card c in await d.GetAllAsync<Card>())
             {
                 if (c.ProjectId == id)

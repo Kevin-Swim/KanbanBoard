@@ -1,6 +1,8 @@
 ﻿
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using KanbanBoard.Models;
+using KanbanBoard.Services;
 using System.Collections.ObjectModel;
 
 namespace KanbanBoard.ViewModel
@@ -8,10 +10,15 @@ namespace KanbanBoard.ViewModel
     [QueryProperty("Card", "Card")]
     public partial class CardDetailsViewModel : BaseViewModel
     {
+        DataService d = new();
+
         [ObservableProperty]
         string name;
         [ObservableProperty]
         string description;
+
+        [ObservableProperty]
+        string newcomment;
 
         [ObservableProperty]    
         Card card;
@@ -29,18 +36,29 @@ namespace KanbanBoard.ViewModel
         {
             LoadComments();
         }
-        public void LoadComments() 
+        public async Task LoadComments() 
         { 
             Comments.Clear();
 
-            Comment c = new Comment()
+            foreach(Comment c in await d.GetAllAsync<Comment>())
             {
-                Description = "This is a test Comment",
-                ParentCardId = id,
+                if(c.ParentCardId == id) Comments.Add(c);
+            }
+        }
 
-            };
+        [RelayCommand]
+        async Task AddComment()
+        {
+            Comment c = new Comment();
+            c.ParentCardId = id;
+            c.Description = Newcomment;
 
-            Comments.Add(c);
+            Newcomment = "";
+
+            await c.Save();
+
+            await LoadComments();
+
         }
 
     }

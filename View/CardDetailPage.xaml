@@ -18,7 +18,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Entry Grid.Row="3" Grid.Column="0" Margin="50" WidthRequest="1000"/>
-        <Button Grid.Row="3" Grid.Column="1" Text="Submit" WidthRequest="100" HorizontalOptions="End" Margin="50"/>
+        <Entry Grid.Row="3" Grid.Column="0" Margin="50" WidthRequest="1000" Text="{Binding Newcomment}"/>
+        <Button Grid.Row="3" Grid.Column="1" Text="Submit" WidthRequest="100" HorizontalOptions="End" Margin="50" Command="{Binding AddCommentCommand}"/>
     </Grid>
 </ContentPage>

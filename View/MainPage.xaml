@@ -5,7 +5,7 @@
              xmlns:viewModel="clr-namespace:KanbanBoard.ViewModel"
              x:Class="KanbanBoard.View.MainPage"
              x:DataType="viewModel:WorkspaceViewModel"
-             Background="#383F51"
+             Background="#1F1F1F"
              >
 
     <Grid RowDefinitions="100,Auto" ColumnDefinitions="Auto,*" ColumnSpacing="25" RowSpacing="25">
@@ -24,10 +24,8 @@
                             <DragGestureRecognizer CanDrag="True" DropCompletedCommandParameter="{Binding .}"
                                                    DropCompletedCommand="{Binding Source={RelativeSource AncestorType={x:Type viewModel:WorkspaceViewModel}}, Path=DeleteProjectCommand}"/>
                         </Frame.GestureRecognizers>
-                        <VerticalStackLayout VerticalOptions="Start">
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
                             <Label FontSize="Medium" FontFamily="Arial" Text="{Binding Name}" Margin="0,25,0,25" FontAttributes="Bold" TextColor="#DDDBF1"/>
-                            <Label FontSize="Small" FontFamily="Arial" HorizontalOptions="End" Text="{Binding Description}" Margin="0,25,0,0" TextColor="#DDDBF1"/>
-                            <Label Text="{Binding Id}"/>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
